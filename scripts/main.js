@@ -36,7 +36,7 @@ console.log(a,b,c,d)
 
 app.ticker.add(() => {
   const buffer = mesh.geometry.getBuffer('aVertexPosition');
-  d = d + 0.01;
+  c = c + 0.01;
   buffer.update(new Float32Array(getPath(a, b, c, d)));
 });
 
@@ -46,6 +46,14 @@ app.ticker.add(() => {
 const renderer = app.renderer;
 
 const geometry = new PIXI.Geometry().addAttribute('aVertexPosition', path, 2);
+
+const colors = [];
+for (let index = 0; index < quantity; index++) {
+  colors.push(Math.random());
+  colors.push(Math.random());
+  colors.push(Math.random());
+}
+geometry.addAttribute('aVertexColors', colors, 3);
 
 window.addEventListener('click', () => {
   const buffer = mesh.geometry.getBuffer('aVertexPosition');
@@ -60,17 +68,22 @@ attribute vec2 aVertexPosition;
 
 uniform mat3 translationMatrix;
 uniform mat3 projectionMatrix;
+varying vec3 vTextureCoord;
+attribute vec3 aVertexColors;
 
 void main() {
-  gl_PointSize = 2.0;
+  gl_PointSize = 5.0;
   gl_Position = vec4((projectionMatrix * translationMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);
+  vTextureCoord = aVertexColors;
 }`;
 
 const fragmentSrc = `
 precision mediump float;
 
+varying vec3 vTextureCoord;
+
 void main() {
-  gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+  gl_FragColor = vec4(vTextureCoord, 1.0);
 }`;
 
 const shader = PIXI.Shader.from(vertexSrc, fragmentSrc, null);
