@@ -14,10 +14,10 @@ let b = Math.random() * 4 - 2;
 let c = Math.random() * 4 - 2;
 let d = Math.random() * 4 - 2;
 
-a = 1.054615436469314;
-b = -1.8967270448703388;
-c = -1.252268354929564;
-d = 0;
+//a = 1.054615436469314;
+//b = -1.8967270448703388;
+//c = -1.252268354929564;
+//d = 0;
 
 const getPath = (a, b, c, d) => {
   let path = [];
@@ -48,7 +48,6 @@ const renderer = app.renderer;
 const geometry = new PIXI.Geometry().addAttribute('aVertexPosition', path, 2);
 
 window.addEventListener('click', () => {
-  // geometry.addAttribute('aVertexPosition', getPath(a, b, c, d + 0.05), 2);
   const buffer = mesh.geometry.getBuffer('aVertexPosition');
   d = d + 0.01;
   buffer.update(new Float32Array(getPath(a, b, c, d)));
