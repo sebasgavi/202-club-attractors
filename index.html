@@ -3,37 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    body{
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
-    form {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-    }
-    input {
-      width: 100%;
-    }
-  </style>
+  <title>Attractors</title>
+  <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
 
   <form>
-    <input type="range" name="a" min="-2" max="2" step="0.000000000000001">
-    <input type="range" name="b" min="-2" max="2" step="0.000000000000001">
-    <input type="range" name="c" min="-2" max="2" step="0.000000000000001">
-    <input type="range" name="d" min="-2" max="2" step="0.000000000000001">
-    <button type="button" name="btn">regenerate</button>
+    <input type="range" name="ratio" min="-1" max="1" value="0" step="0.00001">
+    <input type="range" name="alpha" min="0" max="1" value="1" step="0.00001">
+    <div>
+      <input type="range" name="quantity" min="50000" max="1000000" step="100" value="65000">
+      <input type="range" name="a" min="-2" max="2" step="0.000000000000001">
+      <input type="range" name="b" min="-2" max="2" step="0.000000000000001">
+      <input type="range" name="c" min="-2" max="2" step="0.000000000000001">
+      <input type="range" name="d" min="-2" max="2" step="0.000000000000001">
+    </div>
+    <button type="button" name="random">random (r)</button>
+    <button type="button" name="save">save (s)</button>
   </form>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>
+  <script src="./lib/pixi.min.js"></script>
+  <script src="./lib/lodash.min.js"></script>
+  <script src="./scripts/functions.js"></script>
+  <script src="./scripts/getAttractorPoints.js"></script>
+  <script src="./scripts/pixi.js"></script>
+  <script src="./scripts/positionMesh.js"></script>
+  <script src="./scripts/valuesHelpers.js"></script>
   <script src="./scripts/main.js"></script>
 </body>
 </html>
